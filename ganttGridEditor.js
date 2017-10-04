@@ -649,7 +649,8 @@ GridEditor.prototype.openFullEditor = function (task, editOnlyAssig) {
         var trAss = $(this);
         var assId = trAss.attr("assId");
         var resId = trAss.find("[name=resourceId]").val();
-        var resName = trAss.find("[name=resourceId_txt]").val(); // from smartcombo text input part
+        //var resName = trAss.find("[name=resourceId_txt]").val(); // from smartcombo text input part
+        var resName = trAss.find("[value="+resId+"]").text();
         var roleId = trAss.find("[name=roleId]").val();
         var effort = millisFromString(trAss.find("[name=effort]").val(),true);
 
