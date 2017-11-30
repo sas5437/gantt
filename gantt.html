@@ -115,6 +115,9 @@ function getDefaultProject() {
       {"id": "tmp_1", "name": "Stakeholder"},
       {"id": "tmp_2", "name": "Requirements Auth"},
       {"id": "tmp_3", "name": "Design Auth"},
+      {"id": "tmp_3", "name": "Budget Auth"},
+      {"id": "tmp_3", "name": "Technical Auth"},
+      {"id": "tmp_3", "name": "Business Auth"},
       {"id": "tmp_4", "name": "Contributor"}
     ],
     "canWrite": true,
@@ -134,10 +137,15 @@ function loadFromFile() {
   var file = $('#loadFile')[0].files[0];
   reader.readAsText(file);
   $(reader).on('load', function(e) {
-    var prj=getDefaultProject();
+    var prj= {};
     var file = e.target.result, results;
     if (file && file.length) {
       prj=JSON.parse(file);
+      if(prj["roles"].length === 0){
+        prj["roles"] = getDefaultProject()["roles"];
+      }
+    } else {
+      prj=getDefaultProject();
     }
     ge.loadProject(prj);
     ge.checkpoint(); //empty the undo stack
